@@ -1,0 +1,19 @@
+FROM odoo:19
+
+USER root
+
+COPY requirements.txt /tmp/requirements.txt
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    python3-dev \
+    libpq-dev \
+    build-essential \
+    && pip3 install --break-system-packages -r /tmp/requirements.txt \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+USER odoo
+
+CMD ["odoo", "--addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons"]

@@ -1,0 +1,7 @@
+qifparse
+ofxparse
+pandas
+openpyxl
+xlrd
+xlsxwriter
+numpy
